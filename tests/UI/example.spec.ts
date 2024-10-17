@@ -26,4 +26,7 @@ test('test', async ({ page }) => {
   await ui.navigateTo(page, data.urlSelfBooking);
   const search = new Search(page);
   await search.verifySearchSelbookingPage();
+  await ui.clickElement(page, `#auto-complete-input-leavingFrom`);
+  await ui.typeText(page, '#airport-autocomplete-leavingFrom input[placeholder="Where are you leaving from ?"]', '12345');
+  await ui.captureScreenshot(page, 'test-type-text.png');
 });

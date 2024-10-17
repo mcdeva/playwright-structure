@@ -12,6 +12,18 @@ export async function clickElement(page: Page, selector: string) {
   await page.click(selector);
 }
 
+export async function checkBoxElement(page: Page, selector: string) {
+  await page.check(selector);
+}
+
+export async function uncheckBoxElement(page: Page, selector: string) {
+  await page.uncheck(selector);
+}
+
+export async function hoverOnElement(page: Page, selector: string) {
+  await page.hover(selector);
+}
+
 export async function scrollToElement(page: Page, selector: string): Promise<void> {
   const elementHandle = await page.$(selector);
   if (elementHandle) {
@@ -23,6 +35,19 @@ export async function scrollToElement(page: Page, selector: string): Promise<voi
 
 export async function fillText(page: Page, selector: string, text: string) {
   await page.fill(selector, text);
+}
+
+export async function typeText(page: Page, selector: string, text: string) {
+  const elementHandle = page.locator(selector);
+  if (elementHandle) {
+    await elementHandle.pressSequentially(text, { delay: 50 });
+  } else {
+    throw new Error(`Element with selector: \`${selector}\` not found.`);
+  }
+}
+
+export async function clearText(page: Page, selector: string) {
+  await page.fill(selector, "");
 }
 
 export async function getText(page: Page, selector: string): Promise<string> {
@@ -61,10 +86,17 @@ export async function waitUrl(page: Page, expectUrl: string, timeout: number=500
 }
 
 // validate
-export async function validateText(page: Page, selector: string, expectText: string) {
+export async function validateText(page: Page, selector: string, expectedText: string) {
   const actualText = await page.textContent(selector);
-  if (actualText !== expectText) {
-    throw new Error(`Validation failed: Expected text: \`${expectText}\`, but got \`${actualText}\`.`);
+  if (actualText !== expectedText) {
+    throw new Error(`Validation failed: Expected text: \`${expectedText}\`, but got: \`${actualText}\`.`);
+  }
+}
+
+export async function validateContainsText(page: Page, selector: string, expectedText: string) {
+  const actualText = await page.textContent(selector);
+  if (!actualText?.includes(expectedText)) {
+    throw new Error(`Validation failed: Expected text: \`${expectedText}\` not found in element: \`${selector}\`. Actual text: \`${actualText?.trim()}\``);
   }
 }
 

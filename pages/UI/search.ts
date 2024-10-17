@@ -13,6 +13,7 @@ export class Search {
 
   async verifySearchSelbookingPage() {
     await ui.validateText(this.page, '#txt-where-plan-self', this.locale.welcomeMessage)
+    await ui.validateContainsText(this.page, '#txt-where-plan-self', "Where");
     await ui.captureScreenshot(this.page, "welcome-page.png");
   }
 }
