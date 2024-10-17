@@ -17,7 +17,7 @@ export async function scrollToElement(page: Page, selector: string): Promise<voi
   if (elementHandle) {
     await elementHandle.scrollIntoViewIfNeeded();
   } else {
-    throw new Error(`Element with selector: \`${selector}\` not found`);
+    throw new Error(`Element with selector: \`${selector}\` not found.`);
   }
 }
 
@@ -25,10 +25,24 @@ export async function fillText(page: Page, selector: string, text: string) {
   await page.fill(selector, text);
 }
 
+export async function getText(page: Page, selector: string): Promise<string> {
+  const elementHandle = await page.$(selector);
+  if (elementHandle) {
+    const textContent = await elementHandle.textContent();
+    return textContent?.trim() || '';
+  } else {
+    throw new Error(`Element with selector: \`${selector}\` not found.`);
+  }
+}
+
 export async function captureScreenshot(page: Page, image: string = 'screenshot.png') {
   await waitTime(page);
   const path = `./screenshot/${image}`;
   await page.screenshot({ path, fullPage: true });
+}
+
+export async function waitForLoadPage(page: Page) {
+  await page.waitForLoadState('domcontentloaded');
 }
 
 // unit millisecond - default 500 ms
@@ -57,7 +71,7 @@ export async function validateText(page: Page, selector: string, expectText: str
 export async function validateUrl(page: Page, expectUrl: string) {
   const actualUrl = page.url();
   if (actualUrl !==  expectUrl) {
-    throw new Error(`Validation failed: Expected URL: \`${actualUrl}\`, but got: \`${expectUrl}\``)
+    throw new Error(`Validation failed: Expected URL: \`${expectUrl}\`, but got: \`${actualUrl}\`.`)
   }
 }
 
