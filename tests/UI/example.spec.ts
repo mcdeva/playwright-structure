@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import * as ui from "../../asset/common-ui";
 import * as data from "../../config/QA.json";
+import { Search } from "../../pages/UI/search";
 
 test.use({ storageState: './login-auth.json' });
 
@@ -23,6 +24,6 @@ test.use({ storageState: './login-auth.json' });
 
 test('test', async ({ page }) => {
   await ui.navigateTo(page, data.urlSelfBooking);
-  await ui.validateText(page, '#txt-where-plan-self', 'Where is your plan today ?')
-  await ui.captureScreenshot(page, "welcome-page.png");
+  const search = new Search(page);
+  await search.verifySearchSelbookingPage();
 });
