@@ -1,32 +1,17 @@
 import { test, expect } from '@playwright/test';
-import * as ui from "../../asset/common-ui";
-import * as data from "../../config/QA.json";
+import { UI } from "../../utils/common-ui";
+import * as data from "../../data/QA.json";
 import { Search } from "../../pages/UI/search";
+import { locator } from '../../locators/locator';
 
 test.use({ storageState: './login-auth.json' });
 
-// test('has title', async ({ page }) => {
-//   await page.goto('https://playwright.dev/');
-
-//   // Expect a title "to contain" a substring.
-//   await expect(page).toHaveTitle(/Playwright/);
-// });
-
-// test('get started link', async ({ page }) => {
-//   await page.goto('https://playwright.dev/');
-
-//   // Click the get started link.
-//   await page.getByRole('link', { name: 'Get started' }).click();
-
-//   // Expects page to have a heading with the name of Installation.
-//   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-// });
-
 test('test', async ({ page }) => {
-  await ui.navigateTo(page, data.urlSelfBooking);
+  const ui = new UI(page);
+  await ui.navigateTo(data.urlSelfBooking);
   const search = new Search(page);
   await search.verifySearchSelbookingPage();
-  await ui.clickElement(page, `#auto-complete-input-leavingFrom`);
-  await ui.typeText(page, '#airport-autocomplete-leavingFrom input[placeholder="Where are you leaving from ?"]', '12345');
-  await ui.captureScreenshot(page, 'test-type-text.png');
+  await ui.clickElement(locator.ddlLeavingFrom);
+  await ui.typeText(locator.txtLeavingFrom, '12345');
+  await ui.captureScreenshot('test-type-text.png');
 });

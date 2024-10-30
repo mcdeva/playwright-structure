@@ -1,20 +1,25 @@
 import { Browser, chromium, Page } from "@playwright/test";
-import * as ui from "./asset/common-ui";
-import * as data from "./config/QA.json";
+import { UI } from "./utils/common-ui";
+import { loadDataSite, loadLocale } from "./utils/helper";
+import { locator } from "./locators/locator";
+
+const data = loadDataSite()
+const locale = loadLocale();
 
 async function globalSetup() {
   const browser: Browser = await chromium.launch({ headless: true });
   const context = await browser.newContext();
   const page: Page = await context.newPage();
 
-  await ui.navigateTo(page, data.url);
-  await ui.clickElement(page, '#btn-cookie-save-all');
-  await ui.fillText(page, '[data-testid="txt-email"]', 'rukpong.r@arcadiaapm.com');
-  await ui.fillText(page, '[data-testid="txt-password"]', 'Tmp1234!');
-  await ui.clickElement(page, '#btn-login');
-  await ui.validateText(page, '#notistack-snackbar', 'Login successfully');
+  const ui = new UI(page);
+  await ui.navigateTo(data.url);
+  await ui.clickElement(locator.btnAcceptCookie);
+  await ui.fillText(locator.txtEmail, data.email);
+  await ui.fillText(locator.txtPassword, data.password);
+  await ui.clickElement(locator.btnLogin);
+  await ui.validateText(locator.lblNotiStack, locale.loginNotiStackMessage);
 
-  await page.context().storageState({ path: "./login-auth.json"})
+  await page.context().storageState({ path: "./login-auth.json" });
   await browser.close();
 }
 

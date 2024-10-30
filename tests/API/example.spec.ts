@@ -1,7 +1,7 @@
 import { test, expect, request } from '@playwright/test';
-import * as data from '../../config/QA.json';
-import * as api from "../../asset/common-api";
-import * as common from "../../asset/common";
+import * as data from '../../data/QA.json';
+import * as api from "../../utils/common-api";
+import * as common from "../../utils/common";
 
 const apiLogin = "/tmpauthentication-qa/api/login";
 
