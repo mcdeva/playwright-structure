@@ -1,14 +1,26 @@
 {
-  "name": "structure",
+  "name": "pg",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:en": "TEST_LANG=en playwright test",
+    "test:th": "TEST_LANG=th playwright test",
+    "test:dev": "TEST_ENV=dev playwright test",
+    "test:stg": "TEST_ENV=staging playwright test",
+    "test:prod": "TEST_ENV=prod playwright test",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "codegen": "playwright codegen",
+    "test:file": "playwright test $1"
+  },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
-    "@playwright/test": "^1.48.0",
-    "@types/node": "^22.7.5"
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.1.0"
   }
 }

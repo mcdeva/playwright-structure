@@ -1,0 +1,8 @@
+{
+  "baseURL": "http://staging.yourwebsite.com",
+  "apiEndpoint": "http://staging.yourwebsite.com/api",
+  "adminUser": {
+    "username": "stg_admin",
+    "password": "stg_password"
+  }
+}

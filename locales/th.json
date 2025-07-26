@@ -1,0 +1,13 @@
+{
+  "loginPage": {
+    "usernamePlaceholder": "ชื่อผู้ใช้",
+    "passwordPlaceholder": "รหัสผ่าน",
+    "loginButton": "เข้าสู่ระบบ",
+    "lockedOutUserError": "ข้อผิดพลาด: ขออภัย ผู้ใช้นี้ถูกระงับการใช้งาน",
+    "invalidCredentialsError": "ข้อผิดพลาด: ชื่อผู้ใช้หรือรหัสผ่านไม่ตรงกับผู้ใช้ใดๆ ในระบบนี้"
+  },
+  "homePage": {
+    "productTitle": "Swag Labs",
+    "cartText": "ตะกร้าของคุณ"
+  }
+}

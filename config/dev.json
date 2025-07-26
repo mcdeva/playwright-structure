@@ -1,0 +1,8 @@
+{
+  "baseURL": "https://www.saucedemo.com/",
+  "apiEndpoint": "https://www.saucedemo.com//api",
+  "adminUser": {
+    "username": "dev_admin",
+    "password": "password"
+  }
+}

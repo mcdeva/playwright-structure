@@ -1,0 +1,8 @@
+{
+  "baseURL": "http://www.yourwebsite.com",
+  "apiEndpoint": "http://www.yourwebsite.com/api",
+  "adminUser": {
+    "username": "prod_admin",
+    "password": "prod_password"
+  }
+}

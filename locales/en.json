@@ -1,0 +1,13 @@
+{
+  "loginPage": {
+    "usernamePlaceholder": "Username",
+    "passwordPlaceholder": "Password",
+    "loginButton": "Log in",
+    "lockedOutUserError": "Epic sadface: Sorry, this user has been locked out.",
+    "invalidCredentialsError": "Epic sadface: Username and password do not match any user in this service"
+  },
+  "homePage": {
+    "productTitle": "Swag Labs",
+    "cartText": "Your Cart"
+  }
+}
