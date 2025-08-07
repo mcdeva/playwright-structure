@@ -12,8 +12,7 @@
     "test:prod": "TEST_ENV=prod playwright test",
     "test:debug": "playwright test --debug",
     "test:ui": "playwright test --ui",
-    "codegen": "playwright codegen",
-    "test:file": "playwright test $1"
+    "codegen": "playwright codegen"
   },
   "type": "module",
   "keywords": [],
