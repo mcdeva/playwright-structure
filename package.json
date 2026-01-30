@@ -14,7 +14,7 @@
     "test:ui": "playwright test --ui",
     "codegen": "playwright codegen"
   },
-  "type": "module",
+  "type": "commonjs",
   "keywords": [],
   "author": "",
   "license": "ISC",
